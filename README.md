@@ -1,70 +1,61 @@
-# Getting Started with Create React App
+# Reusable Components Library
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Setup
 
-## Available Scripts
+Begin with `yarn install` on the root directory to install your required `node_modules`.
 
-In the project directory, you can run:
+```
+yarn install
+```
 
-### `npm start`
+---
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Start the StoryBook
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+To start the storybook locally, run:
 
-### `npm test`
+```
+yarn storybook
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+---
 
-### `npm run build`
+## Test/Add a new component to StoryBook
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Create a new file under `/stories` directory with the following naming convention, `[COMPONENT_NAME].stories.jsx`, using PascalCase for your component name.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+As a template you can use the following:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```js
+import React from 'react';
+import { action } from '@storybook/addon-actions';
 
-### `npm run eject`
+import [COMPONENT_NAME] from '../components/[COMPONENT_MAIN_FILE]]';
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+export default {
+  title: 'Components/Button', // based on under which section you want your component to be shown
+  component: [COMPONENT_NAME],
+};
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+const Template = (args) => (
+  <[COMPONENT_NAME] {...args} />
+);
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+export const [COMPONENT_STATE1] = Template.bind({});
+[COMPONENT_STATE1].args = {
+  // Here you initialize your component props for your example to be rendered
+  // Here's an example
+  text: 'Primary Button',
+  backgroundColor: '#0220c1',
+  iconColor: '#fff',
+  textColor: '#fff',
+  isDisabled: false,
+  size: 'large',
+  styles: { margin: '10px', padding: '10px', width: '200px' },
+};
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+You can create component states, as many as you need, and all will be rendered inside the story book. (Check the already created stories for more info)
+For any other customization, you can always refer to the storybook documentation [here](https://storybook.js.org/docs/react/writing-stories/introduction).
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+---
